@@ -1,5 +1,10 @@
 jQuery(document).ready(function ($) {
 
+    $('#excursion_form_reservation_passengers').on('input', function (event) {
+        let price = $('#excursion_form_reservation_price').val()
+        document.getElementById('excursion_form_reservation_total').textContent = ['$', parseFloat(price) * parseInt(event.target.value)].join('')
+    })
+
     $('#contact-us-form').on('submit', function (event) {
         event.preventDefault();
         var formData = $(this).serialize();

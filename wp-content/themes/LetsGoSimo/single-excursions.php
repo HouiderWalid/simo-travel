@@ -1,7 +1,7 @@
 <?php
 get_header();
 $passengers = 2;
-$price = 40;
+$price = get_post_meta(get_the_ID(), 'excursion_price', true);
 ?>
 
 <?php if (has_post_thumbnail()): ?>
@@ -94,15 +94,15 @@ $price = 40;
             </div>
 
             <div class="flex gap-12 my-8">
-
+                <input id="excursion_form_reservation_price" type="hidden" value="<?php echo $price ?>">
                 <label class="block mb-2 text-sm font-medium text-gray-900 w-1/2">
                     <span>Passengers</span>
-                    <input type="number" value="<?php echo $passengers ?>" name="passengers"
+                    <input id="excursion_form_reservation_passengers" type="number" value="<?php echo $passengers ?>" name="passengers"
                            class="bg-gray-50 border mt-2 border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                     />
                 </label>
                 <span class="flex items-center w-1/2">
-                    Price: <span><?php echo ' $' . $passengers * $price ?></span>
+                    Price: &nbsp<span id="excursion_form_reservation_total"><?php echo ' $' . $passengers * $price ?></span>
                 </span>
             </div>
 
@@ -115,7 +115,6 @@ $price = 40;
         </form>
 
         <h1 class="my-20 text-2xl text-center">Description</h1>
-
 
         <div class="p-8 bg-white" style="box-shadow: 0 1rem 3rem rgba(0,0,0,.175)">
             <?php the_content() ?>
